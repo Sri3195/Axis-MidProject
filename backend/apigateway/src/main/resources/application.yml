@@ -1,0 +1,31 @@
+server:
+  port: 8000
+  
+spring:
+  application:
+    name: API_GATEWAY
+  cloud:
+    gateway:
+      routes:
+      - id: teacher-service
+        uri:
+          lb://teacher-service
+        predicates:
+        - Path=/api/v1/TEACHER/** 
+      - id: student-service
+        uri:
+          lb://student-service
+        predicates:
+        - Path=/api/v1/STUDENT/**
+      - id: student-attendance-service
+        uri:
+          lb://student-attendance-service
+        predicates:
+        - Path=/api/v1/ATTENDANCE/** 
+      - id: login-service
+        uri:
+          lb://login-service
+        predicates:
+        - Path=/api/v1/LOGIN/**
+  
+    
